@@ -23,6 +23,10 @@ Use the run configurations provided by the run widget in your IDE's toolbar. You
 - Android app: `./gradlew :androidApp:assembleDebug`
 - iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
 
+### Local database
+
+Both application targets create or open a persistent SQLite database named `srs.db` at startup. It lives in the app's private data directory, so each installed Android or iOS app has its own local database. The database schema is defined by the SQLDelight files in [`sharedLogic/src/commonMain/sqldelight/com/example/srs/data/database`](./sharedLogic/src/commonMain/sqldelight/com/example/srs/data/database).
+
 ### Running tests
 
 Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
