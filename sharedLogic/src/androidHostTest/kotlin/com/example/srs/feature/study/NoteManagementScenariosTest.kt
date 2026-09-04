@@ -1,6 +1,6 @@
 package com.example.srs.feature.study
 
-import com.example.srs.feature.study.model.Timestamp
+import com.example.srs.feature.study.time.Timestamp
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull

@@ -1,9 +1,12 @@
-package com.example.srs.feature.study.model
+package com.example.srs.feature.study.card
 
+import com.example.srs.feature.study.deck.DeckId
+import com.example.srs.feature.study.note.NoteId
+import com.example.srs.feature.study.time.Timestamp
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
-class DomainModelTest {
+class CardModelTest {
     @Test
     fun `a card rejects a blank prompt`() {
         assertFailsWith<IllegalArgumentException> {

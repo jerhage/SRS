@@ -1,4 +1,7 @@
-package com.example.srs.feature.study.model
+package com.example.srs.feature.study.deck
+
+import com.example.srs.feature.study.time.Timestamp
+import kotlin.jvm.JvmInline
 
 /** A user-owned collection of notes and cards. A parent creates an optional deck hierarchy. */
 data class Deck(
@@ -14,3 +17,6 @@ data class Deck(
         require(parentId != id) { "A deck cannot be its own parent." }
     }
 }
+
+@JvmInline
+value class DeckId(val value: String)

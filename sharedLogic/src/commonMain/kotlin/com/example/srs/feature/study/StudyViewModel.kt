@@ -1,5 +1,7 @@
 package com.example.srs.feature.study
 
+import com.example.srs.feature.study.deck.DeckRepository
+import com.example.srs.feature.study.deck.NewDeckFactory
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

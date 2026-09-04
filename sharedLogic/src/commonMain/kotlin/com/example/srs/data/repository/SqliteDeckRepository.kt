@@ -2,10 +2,10 @@ package com.example.srs.data.repository
 
 import com.example.srs.data.database.Deck
 import com.example.srs.data.database.SrsDatabase
-import com.example.srs.feature.study.model.Deck as DomainDeck
-import com.example.srs.feature.study.model.DeckId
-import com.example.srs.feature.study.model.Timestamp
-import com.example.srs.feature.study.DeckRepository
+import com.example.srs.feature.study.deck.Deck as DomainDeck
+import com.example.srs.feature.study.deck.DeckId
+import com.example.srs.feature.study.deck.DeckRepository
+import com.example.srs.feature.study.time.Timestamp
 
 class SqliteDeckRepository(
     database: SrsDatabase,

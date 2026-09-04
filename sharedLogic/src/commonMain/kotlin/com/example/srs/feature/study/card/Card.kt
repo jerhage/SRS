@@ -1,4 +1,9 @@
-package com.example.srs.feature.study.model
+package com.example.srs.feature.study.card
+
+import com.example.srs.feature.study.deck.DeckId
+import com.example.srs.feature.study.note.NoteId
+import com.example.srs.feature.study.time.Timestamp
+import kotlin.jvm.JvmInline
 
 /** A single reviewable prompt. Multiple cards may be produced from one note. */
 data class Card(
@@ -19,3 +24,6 @@ data class Card(
         require(answer.isNotBlank()) { "A card must have an answer." }
     }
 }
+
+@JvmInline
+value class CardId(val value: String)

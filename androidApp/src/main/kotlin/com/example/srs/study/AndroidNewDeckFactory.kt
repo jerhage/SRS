@@ -1,9 +1,9 @@
 package com.example.srs.study
 
-import com.example.srs.feature.study.NewDeckFactory
-import com.example.srs.feature.study.model.Deck
-import com.example.srs.feature.study.model.DeckId
-import com.example.srs.feature.study.model.Timestamp
+import com.example.srs.feature.study.deck.Deck
+import com.example.srs.feature.study.deck.DeckId
+import com.example.srs.feature.study.deck.NewDeckFactory
+import com.example.srs.feature.study.time.Timestamp
 import java.util.UUID
 
 class AndroidNewDeckFactory : NewDeckFactory {

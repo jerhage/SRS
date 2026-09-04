@@ -2,14 +2,14 @@ package com.example.srs.data.repository
 
 import com.example.srs.data.database.Card
 import com.example.srs.data.database.SrsDatabase
-import com.example.srs.feature.study.model.Card as DomainCard
-import com.example.srs.feature.study.model.CardId
-import com.example.srs.feature.study.model.CardPhase
-import com.example.srs.feature.study.model.DeckId
-import com.example.srs.feature.study.model.NoteId
-import com.example.srs.feature.study.model.SchedulingState
-import com.example.srs.feature.study.model.Timestamp
-import com.example.srs.feature.study.CardRepository
+import com.example.srs.feature.study.card.Card as DomainCard
+import com.example.srs.feature.study.card.CardId
+import com.example.srs.feature.study.card.CardPhase
+import com.example.srs.feature.study.card.CardRepository
+import com.example.srs.feature.study.card.SchedulingState
+import com.example.srs.feature.study.deck.DeckId
+import com.example.srs.feature.study.note.NoteId
+import com.example.srs.feature.study.time.Timestamp
 
 class SqliteCardRepository(
     database: SrsDatabase,

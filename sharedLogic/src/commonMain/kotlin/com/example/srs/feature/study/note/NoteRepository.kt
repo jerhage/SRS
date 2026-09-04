@@ -1,8 +1,6 @@
-package com.example.srs.feature.study
+package com.example.srs.feature.study.note
 
-import com.example.srs.feature.study.model.DeckId
-import com.example.srs.feature.study.model.Note
-import com.example.srs.feature.study.model.NoteId
+import com.example.srs.feature.study.deck.DeckId
 
 interface NoteRepository {
     suspend fun get(id: NoteId): Note?

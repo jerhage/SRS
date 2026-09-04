@@ -1,4 +1,6 @@
-package com.example.srs.feature.study.model
+package com.example.srs.feature.study.card
+
+import com.example.srs.feature.study.time.Timestamp
 
 /** The durable scheduling facts for a card; scheduling policy belongs in a scheduler later. */
 data class SchedulingState(

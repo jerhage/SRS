@@ -1,4 +1,8 @@
-package com.example.srs.feature.study.model
+package com.example.srs.feature.study.note
+
+import com.example.srs.feature.study.deck.DeckId
+import com.example.srs.feature.study.time.Timestamp
+import kotlin.jvm.JvmInline
 
 /**
  * The editable source material. Cards are the scheduled prompts generated from a note.
@@ -21,3 +25,6 @@ data class Note(
         require(tags.none { it.isBlank() }) { "Tags cannot be blank." }
     }
 }
+
+@JvmInline
+value class NoteId(val value: String)

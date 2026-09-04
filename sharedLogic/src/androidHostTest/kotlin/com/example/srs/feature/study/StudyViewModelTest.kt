@@ -1,8 +1,10 @@
 package com.example.srs.feature.study
 
-import com.example.srs.feature.study.model.Deck
-import com.example.srs.feature.study.model.DeckId
-import com.example.srs.feature.study.model.Timestamp
+import com.example.srs.feature.study.deck.Deck
+import com.example.srs.feature.study.deck.DeckId
+import com.example.srs.feature.study.deck.DeckRepository
+import com.example.srs.feature.study.deck.NewDeckFactory
+import com.example.srs.feature.study.time.Timestamp
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

@@ -6,10 +6,10 @@ import com.example.srs.data.repository.SqliteCardRepository
 import com.example.srs.data.repository.SqliteDeckRepository
 import com.example.srs.data.repository.SqliteNoteRepository
 import com.example.srs.data.repository.SqliteReviewLogRepository
-import com.example.srs.feature.study.CardRepository
-import com.example.srs.feature.study.DeckRepository
-import com.example.srs.feature.study.NoteRepository
-import com.example.srs.feature.study.ReviewLogRepository
+import com.example.srs.feature.study.card.CardRepository
+import com.example.srs.feature.study.deck.DeckRepository
+import com.example.srs.feature.study.note.NoteRepository
+import com.example.srs.feature.study.review.ReviewLogRepository
 
 class SrsDataStore(driverFactory: DatabaseDriverFactory) {
     private val database = SrsDatabaseFactory(driverFactory).create()

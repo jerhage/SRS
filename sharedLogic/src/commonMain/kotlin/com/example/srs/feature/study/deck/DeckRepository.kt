@@ -1,7 +1,4 @@
-package com.example.srs.feature.study
-
-import com.example.srs.feature.study.model.Deck
-import com.example.srs.feature.study.model.DeckId
+package com.example.srs.feature.study.deck
 
 /** Product-facing access to decks. Implementations decide how decks are stored. */
 interface DeckRepository {

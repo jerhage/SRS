@@ -2,11 +2,11 @@ package com.example.srs.data.repository
 
 import com.example.srs.data.database.Note
 import com.example.srs.data.database.SrsDatabase
-import com.example.srs.feature.study.model.DeckId
-import com.example.srs.feature.study.model.Note as DomainNote
-import com.example.srs.feature.study.model.NoteId
-import com.example.srs.feature.study.model.Timestamp
-import com.example.srs.feature.study.NoteRepository
+import com.example.srs.feature.study.deck.DeckId
+import com.example.srs.feature.study.note.Note as DomainNote
+import com.example.srs.feature.study.note.NoteId
+import com.example.srs.feature.study.note.NoteRepository
+import com.example.srs.feature.study.time.Timestamp
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.SetSerializer
 import kotlinx.serialization.builtins.serializer

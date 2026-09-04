@@ -1,14 +1,14 @@
 package com.example.srs.data.repository
 
 import com.example.srs.data.database.SrsDatabase
-import com.example.srs.feature.study.model.CardId
-import com.example.srs.feature.study.model.CardPhase
-import com.example.srs.feature.study.model.ReviewLog as DomainReviewLog
-import com.example.srs.feature.study.model.ReviewLogId
-import com.example.srs.feature.study.model.ReviewRating
-import com.example.srs.feature.study.model.SchedulingState
-import com.example.srs.feature.study.model.Timestamp
-import com.example.srs.feature.study.ReviewLogRepository
+import com.example.srs.feature.study.card.CardId
+import com.example.srs.feature.study.card.CardPhase
+import com.example.srs.feature.study.card.SchedulingState
+import com.example.srs.feature.study.review.ReviewLog as DomainReviewLog
+import com.example.srs.feature.study.review.ReviewLogId
+import com.example.srs.feature.study.review.ReviewLogRepository
+import com.example.srs.feature.study.review.ReviewRating
+import com.example.srs.feature.study.time.Timestamp
 
 class SqliteReviewLogRepository(
     database: SrsDatabase,

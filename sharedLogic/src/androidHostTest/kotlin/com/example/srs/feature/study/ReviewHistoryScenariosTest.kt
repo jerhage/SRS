@@ -1,11 +1,11 @@
 package com.example.srs.feature.study
 
-import com.example.srs.feature.study.model.CardPhase
-import com.example.srs.feature.study.model.ReviewLog
-import com.example.srs.feature.study.model.ReviewLogId
-import com.example.srs.feature.study.model.ReviewRating
-import com.example.srs.feature.study.model.SchedulingState
-import com.example.srs.feature.study.model.Timestamp
+import com.example.srs.feature.study.card.CardPhase
+import com.example.srs.feature.study.card.SchedulingState
+import com.example.srs.feature.study.review.ReviewLog
+import com.example.srs.feature.study.review.ReviewLogId
+import com.example.srs.feature.study.review.ReviewRating
+import com.example.srs.feature.study.time.Timestamp
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlinx.coroutines.test.runTest

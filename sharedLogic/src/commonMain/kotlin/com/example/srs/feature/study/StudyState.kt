@@ -1,6 +1,6 @@
 package com.example.srs.feature.study
 
-import com.example.srs.feature.study.model.Deck
+import com.example.srs.feature.study.deck.Deck
 
 data class StudyState(
     val decks: List<Deck> = emptyList(),
