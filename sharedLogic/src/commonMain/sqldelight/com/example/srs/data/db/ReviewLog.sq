@@ -13,3 +13,48 @@ CREATE TABLE review_log (
 );
 
 CREATE INDEX review_log_card_reviewed_at ON review_log(card_id, reviewed_at);
+
+insert:
+INSERT INTO review_log(
+    id,
+    card_id,
+    reviewed_at,
+    rating,
+    elapsed_milliseconds,
+    previous_phase,
+    previous_due_at,
+    previous_interval_days,
+    previous_ease_factor,
+    previous_repetitions,
+    previous_lapses
+)
+VALUES (
+    :id,
+    :cardId,
+    :reviewedAt,
+    :rating,
+    :elapsedMilliseconds,
+    :previousPhase,
+    :previousDueAt,
+    :previousIntervalDays,
+    :previousEaseFactor,
+    :previousRepetitions,
+    :previousLapses
+);
+
+selectByCard:
+SELECT
+    id,
+    card_id,
+    reviewed_at,
+    rating,
+    elapsed_milliseconds,
+    previous_phase,
+    previous_due_at,
+    previous_interval_days,
+    previous_ease_factor,
+    previous_repetitions,
+    previous_lapses
+FROM review_log
+WHERE card_id = :cardId
+ORDER BY reviewed_at ASC, id ASC;
