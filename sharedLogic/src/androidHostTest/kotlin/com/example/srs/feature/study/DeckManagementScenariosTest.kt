@@ -1,4 +1,4 @@
-package com.example.srs.data
+package com.example.srs.feature.study
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

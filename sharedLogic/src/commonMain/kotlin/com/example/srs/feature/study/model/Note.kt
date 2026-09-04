@@ -1,4 +1,4 @@
-package com.example.srs.domain.model
+package com.example.srs.feature.study.model
 
 /**
  * The editable source material. Cards are the scheduled prompts generated from a note.

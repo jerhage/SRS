@@ -1,6 +1,6 @@
-package com.example.srs.data
+package com.example.srs.feature.study
 
-import com.example.srs.domain.model.Timestamp
+import com.example.srs.feature.study.model.Timestamp
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlinx.coroutines.test.runTest

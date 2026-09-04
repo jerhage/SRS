@@ -1,4 +1,4 @@
-package com.example.srs.domain.model
+package com.example.srs.feature.study.model
 
 /** A user-owned collection of notes and cards. A parent creates an optional deck hierarchy. */
 data class Deck(

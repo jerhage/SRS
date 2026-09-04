@@ -1,7 +1,7 @@
-package com.example.srs.domain.repository
+package com.example.srs.feature.study
 
-import com.example.srs.domain.model.Deck
-import com.example.srs.domain.model.DeckId
+import com.example.srs.feature.study.model.Deck
+import com.example.srs.feature.study.model.DeckId
 
 /** Product-facing access to decks. Implementations decide how decks are stored. */
 interface DeckRepository {

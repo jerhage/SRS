@@ -1,4 +1,4 @@
-package com.example.srs.domain.model
+package com.example.srs.feature.study.model
 
 /** A single reviewable prompt. Multiple cards may be produced from one note. */
 data class Card(

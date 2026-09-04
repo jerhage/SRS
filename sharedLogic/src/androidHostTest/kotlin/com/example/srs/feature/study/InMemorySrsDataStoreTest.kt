@@ -1,17 +1,18 @@
-package com.example.srs.data
+package com.example.srs.feature.study
 
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
-import com.example.srs.data.db.DatabaseDriverFactory
-import com.example.srs.data.db.SrsDatabase
-import com.example.srs.domain.model.Card
-import com.example.srs.domain.model.CardId
-import com.example.srs.domain.model.CardPhase
-import com.example.srs.domain.model.Deck
-import com.example.srs.domain.model.DeckId
-import com.example.srs.domain.model.Note
-import com.example.srs.domain.model.NoteId
-import com.example.srs.domain.model.SchedulingState
-import com.example.srs.domain.model.Timestamp
+import com.example.srs.data.SrsDataStore
+import com.example.srs.data.database.DatabaseDriverFactory
+import com.example.srs.data.database.SrsDatabase
+import com.example.srs.feature.study.model.Card
+import com.example.srs.feature.study.model.CardId
+import com.example.srs.feature.study.model.CardPhase
+import com.example.srs.feature.study.model.Deck
+import com.example.srs.feature.study.model.DeckId
+import com.example.srs.feature.study.model.Note
+import com.example.srs.feature.study.model.NoteId
+import com.example.srs.feature.study.model.SchedulingState
+import com.example.srs.feature.study.model.Timestamp
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 

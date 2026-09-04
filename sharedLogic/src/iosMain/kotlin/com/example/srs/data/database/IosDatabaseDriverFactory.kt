@@ -1,4 +1,4 @@
-package com.example.srs.data.db
+package com.example.srs.data.database
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver

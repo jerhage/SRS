@@ -1,4 +1,4 @@
-package com.example.srs.domain.model
+package com.example.srs.feature.study.model
 
 import kotlin.jvm.JvmInline
 

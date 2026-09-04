@@ -1,15 +1,15 @@
 package com.example.srs.data
 
-import com.example.srs.data.db.DatabaseDriverFactory
-import com.example.srs.data.db.SrsDatabaseFactory
+import com.example.srs.data.database.DatabaseDriverFactory
+import com.example.srs.data.database.SrsDatabaseFactory
 import com.example.srs.data.repository.SqliteCardRepository
 import com.example.srs.data.repository.SqliteDeckRepository
 import com.example.srs.data.repository.SqliteNoteRepository
 import com.example.srs.data.repository.SqliteReviewLogRepository
-import com.example.srs.domain.repository.CardRepository
-import com.example.srs.domain.repository.DeckRepository
-import com.example.srs.domain.repository.NoteRepository
-import com.example.srs.domain.repository.ReviewLogRepository
+import com.example.srs.feature.study.CardRepository
+import com.example.srs.feature.study.DeckRepository
+import com.example.srs.feature.study.NoteRepository
+import com.example.srs.feature.study.ReviewLogRepository
 
 class SrsDataStore(driverFactory: DatabaseDriverFactory) {
     private val database = SrsDatabaseFactory(driverFactory).create()

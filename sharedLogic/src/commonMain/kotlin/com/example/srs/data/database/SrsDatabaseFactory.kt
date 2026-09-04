@@ -1,4 +1,4 @@
-package com.example.srs.data.db
+package com.example.srs.data.database
 
 class SrsDatabaseFactory(
     private val driverFactory: DatabaseDriverFactory,

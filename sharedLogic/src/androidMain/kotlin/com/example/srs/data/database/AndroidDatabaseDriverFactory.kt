@@ -1,4 +1,4 @@
-package com.example.srs.data.db
+package com.example.srs.data.database
 
 import android.content.Context
 import app.cash.sqldelight.db.SqlDriver

@@ -1,4 +1,4 @@
-package com.example.srs.domain.model
+package com.example.srs.feature.study.model
 
 /** An immutable record of a completed answer and the state that preceded it. */
 data class ReviewLog(

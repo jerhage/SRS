@@ -1,4 +1,4 @@
-package com.example.srs.domain.model
+package com.example.srs.feature.study.model
 
 /** The durable scheduling facts for a card; scheduling policy belongs in a scheduler later. */
 data class SchedulingState(
