@@ -13,26 +13,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.srs.feature.study.StudyAction
 import com.example.srs.feature.study.StudyState
 import com.example.srs.feature.study.StudyViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun StudyScreen(viewModel: StudyViewModel) {
     val state by viewModel.state.collectAsState()
+    val scope = rememberCoroutineScope()
 
     LaunchedEffect(viewModel) {
-        viewModel.onAction(StudyAction.Refresh)
+        viewModel.refresh()
     }
 
     StudyScreen(
         state = state,
-        onDeckNameChanged = { viewModel.onAction(StudyAction.DeckNameChanged(it)) },
-        onCreateDeck = { viewModel.onAction(StudyAction.CreateDeck) },
-        onRefresh = { viewModel.onAction(StudyAction.Refresh) },
+        onDeckNameChanged = viewModel::onDeckNameChanged,
+        onCreateDeck = { scope.launch { viewModel.createDeck() } },
+        onRefresh = { scope.launch { viewModel.refresh() } },
     )
 }
 

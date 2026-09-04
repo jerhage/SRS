@@ -30,20 +30,18 @@ class StudyViewModelTest {
 
         assertEquals(decks, viewModel.state.value.decks)
         assertFalse(viewModel.state.value.isLoading)
-        viewModel.close()
     }
 
     @Test
     fun `creates a named deck and clears the input`() = runTest {
         val repository = FakeDeckRepository()
         val viewModel = StudyViewModel(repository, FakeNewDeckFactory)
-        viewModel.onAction(StudyAction.DeckNameChanged("Spanish"))
+        viewModel.onDeckNameChanged("Spanish")
 
         viewModel.createDeck()
 
         assertEquals(listOf("Spanish"), viewModel.state.value.decks.map { it.name })
         assertEquals("", viewModel.state.value.deckName)
-        viewModel.close()
     }
 }
 

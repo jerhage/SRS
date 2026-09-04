@@ -25,8 +25,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    override fun onDestroy() {
-        studyViewModel.close()
-        super.onDestroy()
-    }
 }

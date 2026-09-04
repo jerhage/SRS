@@ -2,154 +2,98 @@ import SwiftUI
 import SharedLogic
 
 struct ContentView: View {
-    @StateObject private var viewModel: StudyScreenViewModel
+    @StateObject private var viewModel: ObservableStudyViewModel
 
     init(dataStore: SrsDataStore) {
-        _viewModel = StateObject(wrappedValue: StudyScreenViewModel(deckRepository: dataStore.decks))
+        _viewModel = StateObject(wrappedValue: ObservableStudyViewModel(dataStore: dataStore))
     }
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
                 createDeckSection
-
-                Group {
-                    if viewModel.isLoading {
-                        ProgressView("Loading decks...")
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    } else if viewModel.decks.isEmpty {
-                        ContentUnavailableView(
-                            "No Decks Yet",
-                            systemImage: "rectangle.stack.badge.plus",
-                            description: Text("Create a deck to start studying.")
-                        )
-                    } else {
-                        List(viewModel.decks, id: \.idDescription) { deck in
-                            Label(deck.name, systemImage: "rectangle.stack")
-                        }
-                        .listStyle(.plain)
-                    }
-                }
+                deckListSection
             }
             .padding()
             .navigationTitle("Study")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        Task { await viewModel.refresh() }
+                        viewModel.refresh()
                     } label: {
                         Image(systemName: "arrow.clockwise")
                     }
-                    .disabled(viewModel.isLoading)
+                    .disabled(viewModel.state.isLoading)
                     .accessibilityLabel("Refresh decks")
                 }
             }
         }
         .task {
-            await viewModel.refresh()
+            viewModel.start()
+        }
+        .onDisappear {
+            viewModel.stop()
         }
     }
 
     private var createDeckSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            TextField("New deck name", text: $viewModel.deckName)
-                .textFieldStyle(.roundedBorder)
-                .submitLabel(.done)
-                .onSubmit {
-                    Task { await viewModel.createDeck() }
-                }
+            TextField(
+                "New deck name",
+                text: Binding(
+                    get: { viewModel.state.deckName },
+                    set: { viewModel.deckNameChanged($0) }
+                )
+            )
+            .textFieldStyle(.roundedBorder)
+            .submitLabel(.done)
+            .onSubmit {
+                viewModel.createDeck()
+            }
 
-            if let deckNameError = viewModel.deckNameError {
+            if let deckNameError = viewModel.state.deckNameError {
                 Text(deckNameError)
                     .font(.footnote)
                     .foregroundStyle(.red)
             }
 
-            if let errorMessage = viewModel.errorMessage {
+            if let errorMessage = viewModel.state.errorMessage {
                 Text(errorMessage)
                     .font(.footnote)
                     .foregroundStyle(.red)
             }
 
             Button {
-                Task { await viewModel.createDeck() }
+                viewModel.createDeck()
             } label: {
-                if viewModel.isCreatingDeck {
+                if viewModel.state.isCreatingDeck {
                     ProgressView()
                 } else {
                     Label("Create Deck", systemImage: "plus")
                 }
             }
             .buttonStyle(.borderedProminent)
-            .disabled(viewModel.isCreatingDeck)
+            .disabled(viewModel.state.isCreatingDeck)
         }
     }
-}
 
-@MainActor
-final class StudyScreenViewModel: ObservableObject {
-    @Published var decks: [Deck_] = []
-    @Published var deckName = ""
-    @Published var isLoading = false
-    @Published var isCreatingDeck = false
-    @Published var deckNameError: String?
-    @Published var errorMessage: String?
-
-    private let deckRepository: DeckRepository
-
-    init(deckRepository: DeckRepository) {
-        self.deckRepository = deckRepository
-    }
-
-    func refresh() async {
-        isLoading = true
-        errorMessage = nil
-
-        do {
-            decks = try await deckRepository.getAll(includeArchived: false)
-        } catch {
-            errorMessage = "Could not load decks."
-        }
-
-        isLoading = false
-    }
-
-    func createDeck() async {
-        let name = deckName.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !name.isEmpty else {
-            deckNameError = "Enter a deck name."
-            return
-        }
-
-        isCreatingDeck = true
-        deckNameError = nil
-        errorMessage = nil
-
-        do {
-            let now = Int64(Date().timeIntervalSince1970 * 1_000)
-            let deck = Deck_(
-                id: UUID().uuidString,
-                name: name,
-                parentId: nil,
-                createdAt: now,
-                updatedAt: now,
-                isArchived: false
+    @ViewBuilder
+    private var deckListSection: some View {
+        if viewModel.state.isLoading {
+            ProgressView("Loading decks...")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if viewModel.state.decks.isEmpty {
+            ContentUnavailableView(
+                "No Decks Yet",
+                systemImage: "rectangle.stack.badge.plus",
+                description: Text("Create a deck to start studying.")
             )
-
-            try await deckRepository.save(deck: deck)
-            decks = try await deckRepository.getAll(includeArchived: false)
-            deckName = ""
-        } catch {
-            errorMessage = "Could not create deck."
+        } else {
+            List(viewModel.state.decks, id: \.idDescription) { deck in
+                Label(deck.name, systemImage: "rectangle.stack")
+            }
+            .listStyle(.plain)
         }
-
-        isCreatingDeck = false
-    }
-}
-
-private extension Deck_ {
-    var idDescription: String {
-        String(describing: id)
     }
 }
 
