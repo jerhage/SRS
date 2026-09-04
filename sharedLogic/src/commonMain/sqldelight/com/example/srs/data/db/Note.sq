@@ -1,0 +1,31 @@
+CREATE TABLE note (
+    id TEXT NOT NULL PRIMARY KEY,
+    deck_id TEXT NOT NULL REFERENCES deck(id),
+    fields_json TEXT NOT NULL,
+    tags_json TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    is_archived INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE INDEX note_deck_id ON note(deck_id);
+
+upsert:
+INSERT OR REPLACE INTO note(id, deck_id, fields_json, tags_json, created_at, updated_at, is_archived)
+VALUES (:id, :deckId, :fieldsJson, :tagsJson, :createdAt, :updatedAt, :isArchived);
+
+selectById:
+SELECT id, deck_id, fields_json, tags_json, created_at, updated_at, is_archived
+FROM note
+WHERE id = :id;
+
+selectByDeck:
+SELECT id, deck_id, fields_json, tags_json, created_at, updated_at, is_archived
+FROM note
+WHERE deck_id = :deckId
+    AND (:includeArchived = 1 OR is_archived = 0)
+ORDER BY created_at;
+
+deleteById:
+DELETE FROM note
+WHERE id = :id;

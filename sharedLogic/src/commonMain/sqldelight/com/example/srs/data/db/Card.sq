@@ -1,0 +1,58 @@
+CREATE TABLE card (
+    id TEXT NOT NULL PRIMARY KEY,
+    note_id TEXT NOT NULL REFERENCES note(id),
+    deck_id TEXT NOT NULL REFERENCES deck(id),
+    ordinal INTEGER NOT NULL,
+    prompt TEXT NOT NULL,
+    answer TEXT NOT NULL,
+    phase TEXT NOT NULL,
+    due_at INTEGER NOT NULL,
+    interval_days INTEGER NOT NULL,
+    ease_factor REAL NOT NULL,
+    repetitions INTEGER NOT NULL,
+    lapses INTEGER NOT NULL,
+    is_suspended INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    UNIQUE(note_id, ordinal)
+);
+
+CREATE INDEX card_due ON card(deck_id, is_suspended, due_at);
+CREATE INDEX card_note_id ON card(note_id);
+
+selectById:
+SELECT id, note_id, deck_id, ordinal, prompt, answer, phase, due_at, interval_days,
+    ease_factor, repetitions, lapses, is_suspended, created_at, updated_at
+FROM card
+WHERE id = :id;
+
+selectByNote:
+SELECT id, note_id, deck_id, ordinal, prompt, answer, phase, due_at, interval_days,
+    ease_factor, repetitions, lapses, is_suspended, created_at, updated_at
+FROM card
+WHERE note_id = :noteId
+ORDER BY ordinal;
+
+selectDue:
+SELECT id, note_id, deck_id, ordinal, prompt, answer, phase, due_at, interval_days,
+    ease_factor, repetitions, lapses, is_suspended, created_at, updated_at
+FROM card
+WHERE deck_id = :deckId
+    AND is_suspended = 0
+    AND due_at <= :at
+ORDER BY due_at, ordinal
+LIMIT :limit;
+
+upsert:
+INSERT OR REPLACE INTO card(
+    id, note_id, deck_id, ordinal, prompt, answer, phase, due_at, interval_days,
+    ease_factor, repetitions, lapses, is_suspended, created_at, updated_at
+)
+VALUES (
+    :id, :noteId, :deckId, :ordinal, :prompt, :answer, :phase, :dueAt, :intervalDays,
+    :easeFactor, :repetitions, :lapses, :isSuspended, :createdAt, :updatedAt
+);
+
+deleteById:
+DELETE FROM card
+WHERE id = :id;

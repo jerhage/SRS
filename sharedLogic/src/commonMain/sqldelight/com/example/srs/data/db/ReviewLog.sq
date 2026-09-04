@@ -1,0 +1,15 @@
+CREATE TABLE review_log (
+    id TEXT NOT NULL PRIMARY KEY,
+    card_id TEXT NOT NULL REFERENCES card(id),
+    reviewed_at INTEGER NOT NULL,
+    rating TEXT NOT NULL,
+    elapsed_milliseconds INTEGER NOT NULL,
+    previous_phase TEXT NOT NULL,
+    previous_due_at INTEGER NOT NULL,
+    previous_interval_days INTEGER NOT NULL,
+    previous_ease_factor REAL NOT NULL,
+    previous_repetitions INTEGER NOT NULL,
+    previous_lapses INTEGER NOT NULL
+);
+
+CREATE INDEX review_log_card_reviewed_at ON review_log(card_id, reviewed_at);
